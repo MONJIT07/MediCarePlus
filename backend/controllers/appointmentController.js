@@ -84,10 +84,11 @@ export async function getAppointments(req, res) {
 }
 
 // to getAppointments By Patient
+// to getAppointments By Patient
 export const getAppointmentsByPatient = async (req, res) => {
   try {
     const queryCreatedBy = req.query.createdBy || null;
-    const clerkUserId = req.auth?.userId || null;
+    const clerkUserId = resolveClerkUserId(req); 
     const resolvedCreatedBy = queryCreatedBy || clerkUserId || null;
 
     console.log("resolvedCreatedBy (query or req.auth.userId):", resolvedCreatedBy);

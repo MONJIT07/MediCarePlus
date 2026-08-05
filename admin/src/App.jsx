@@ -3,9 +3,15 @@ import { Route, Routes, Link } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import Hero from "./pages/Hero";
 import Home from "./pages/Home"; 
-import DashBoardPage from "./components/DashBoardPage"; // FIXED: Correct path and casing
+import DashBoardPage from "./components/DashBoardPage";
 import Navbar from "./components/navbar.jsx";
-import Add from "./pages/Add"; // FIX: Imported the missing Add component
+import Add from "./pages/Add";
+import ListPage from "./components/ListPage";
+import Appointments from "./pages/Appointments";
+import SetDashboard from "./pages/SetDashboard.jsx";
+import AddSer from "./pages/AddSer";
+import ListService from "./pages/ListService";
+import ServiceAppointments from "./pages/ServiceAppointments"; // Added missing import
 
 function RequireAuth({ children }) {
     const { isLoaded, isSignedIn } = useUser();
@@ -71,6 +77,61 @@ const App = () => {
                         </RequireAuth>
                     }
                 />
+
+                <Route 
+                    path="/list" 
+                    element={
+                        <RequireAuth>
+                            <ListPage />
+                        </RequireAuth>
+                    } 
+                />
+
+                <Route
+                    path="/appointments"
+                    element={
+                        <RequireAuth>
+                            <Appointments />
+                        </RequireAuth>
+                    }
+                />
+
+                <Route
+                    path="/service-dashboard"
+                    element={
+                        <RequireAuth>
+                            <SetDashboard />
+                        </RequireAuth>
+                    }
+                /> 
+
+                <Route
+                   path="/add-service"
+                   element={
+                    <RequireAuth>
+                        <AddSer />
+                    </RequireAuth>
+                   }
+                />
+
+                <Route 
+                    path="/list-service" 
+                    element={
+                        <RequireAuth>
+                            <ListService />
+                        </RequireAuth>
+                    } 
+                />
+
+                <Route 
+                    path="/service-appointments" 
+                    element={
+                        <RequireAuth>
+                            <ServiceAppointments /> 
+                        </RequireAuth>
+                    } 
+                />
+                
             </Routes>
         </>
     );

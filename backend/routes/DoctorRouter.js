@@ -13,8 +13,8 @@ import {
 
 import doctorAuth from "../middlewares/doctorAuth.js";
 
-const upload = multer({ dest: "/tmp" });
-
+// MUST BE THIS:
+const upload = multer({ dest: "uploads/" });
 const doctorRouter = express.Router();
 
 doctorRouter.get("/", getDoctors);
